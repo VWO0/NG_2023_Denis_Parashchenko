@@ -1,0 +1,1 @@
+# NG_2023_Denis_Parashchenko
