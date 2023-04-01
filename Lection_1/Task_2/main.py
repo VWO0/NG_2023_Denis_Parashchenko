@@ -1,5 +1,5 @@
 print ("Enter your name")
 Name = (input("Your name"))
 print ("Enter last name")
-Last_name = (input("Last_name"))
-print ("Heil Molan!ПС: Не путать с малланом!")
+Surname = (input("Last_name"))
+print("Heil Molan!ПС: Не путать с малланом! " + Name + " " + Surname + "!")
