@@ -1,0 +1,5 @@
+Enter_items = input("Enter items.")
+Items = Enter_items.split()
+Unique_elements =set(Items)
+print("User data list: ",Items)
+print("Unique elements: ",Unique_elements)
