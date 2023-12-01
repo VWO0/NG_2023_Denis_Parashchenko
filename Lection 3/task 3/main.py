@@ -1,6 +1,6 @@
 import json
+""""
 json_data = '''
-
 {
     "glossary": {
         "title": "example glossary",
@@ -27,18 +27,30 @@ json_data = '''
     }
 }
 '''
-# Функция для получения значения по ключу из JSON-данных
-def get_value_by_key(json_data, key):
-    parsed_json = json.loads(json_data)
-    try:
-        value = parsed_json[key]
-        return value
-    except KeyError:
-        return f"key '{key}' not found in JSON data"
+"""
+with open('data_js.json','r') as file:
+    json_data=file.read()
+def get_value_by_key(data, key):
+    if isinstance(data, dict):
+        if key in data:
+            return data[key]
+        else:
+            for k, v in data.items():
+                result = get_value_by_key(v, key)
+                if result is not None:
+                    return result
+    elif isinstance(data, list):
+        for item in data:
+            result = get_value_by_key(item, key)
+            if result is not None:
+                return result
 
-# Запрашиваем у пользователя ключ
+    return None
+
 key_to_find = input("Enter the name of the key to get the corresponding value from JSON: ")
-
-# Получаем значение по ключу и выводим его
-result = get_value_by_key(json_data, key_to_find)
-print(result)
+parsed_json = json.loads(json_data)
+result = get_value_by_key(parsed_json, key_to_find)
+if result is not None:
+    print(result)
+else:
+    print(f"Key '{key_to_find}' not found in JSON data")
