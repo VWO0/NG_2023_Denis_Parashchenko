@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <style>
+        #game-container {
+            display: inline-block;
+            border: 1px solid red;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <pre id="game-area">
+..............................
+..............................
+..............................
+..............................
+@.............................
+..............................
+..............................
+..............................
+..............................
+..............................
+        </pre>
+    </div>
+    <button onclick="move('up')">Up</button>
+    <button onclick="move('down')">Down</button>
+    <button onclick="move('left')">Left</button>
+    <button onclick="move('right')">Right</button>
+
+    <script>
+        function move(direction) {
+            var gameArea = document.getElementById('game-area');
+            var gameText = gameArea.innerText.split('\n');
+            var playerIndex = gameText.findIndex(row => row.includes('@'));
+            var newRow = gameText[playerIndex].split('');
+            var rowLength = newRow.length;
+
+            if (direction === 'up' && playerIndex > 0) {
+                newRow[newRow.indexOf('@')] = '.';
+                gameText[playerIndex] = newRow.join('');
+                gameText[playerIndex - 1] = '@' + gameText[playerIndex - 1].substring(1);
+            } else if (direction === 'down' && playerIndex < gameText.length - 1) {
+                newRow[newRow.indexOf('@')] = '.';
+                gameText[playerIndex] = newRow.join('');
+                gameText[playerIndex + 1] = '@' + gameText[playerIndex + 1].substring(1);
+            } else if (direction === 'left' && newRow.indexOf('@') > 0) {
+                var playerPosition = newRow.indexOf('@');
+                newRow[playerPosition] = '.';
+                newRow[playerPosition - 1] = '@';
+                gameText[playerIndex] = newRow.join('');
+            } else if (direction === 'right' && newRow.indexOf('@') < rowLength - 1) {
+                var playerPosition = newRow.indexOf('@');
+                newRow[playerPosition] = '.';
+                newRow[playerPosition + 1] = '@';
+                gameText[playerIndex] = newRow.join('');
+            }
+
+            gameArea.innerText = gameText.join('\n');
+        }
+    </script>
+</body>
+</html>
