@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Art Gallery</h1>
+
+        <div class="Gallery">
+            <div class="Gallery-line">
+                <img src="{{ url_for('static', filename='images/1.jpg') }}" alt="">
+                <img src="{{ url_for('static', filename='images/2.jpg') }}" alt="">
+                <img src="{{ url_for('static', filename='images/3.jpg') }}" alt="">
+                <img src="{{ url_for('static', filename='images/4.jpg') }}" alt="">
+
+            </div>
+        </div>
+        <button class="Gallery-prev">Prev</button>
+        <button class="Gallery-next">Next</button>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
